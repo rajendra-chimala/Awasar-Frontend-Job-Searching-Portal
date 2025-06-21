@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const baseURL = "https://awasar.onrender.com"
 
 const CompanyHeader = () => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const CompanyHeader = () => {
     const fetchCompany = async () => {
       const companyId = localStorage.getItem('CompanyId');
       try {
-        const res = await axios.get(`http://localhost:5000/api/recruiter/company/profile/${companyId}`);
+        const res = await axios.get(`${baseURL}/api/recruiter/company/profile/${companyId}`);
         setCompany(res.data);
       } catch (err) {
         console.error('Failed to fetch company profile:', err);
@@ -44,7 +45,7 @@ const CompanyHeader = () => {
             <p className="text-sm text-gray-600">{company.address}</p>
           </div>
           <img
-            src={`http://localhost:5000${company.profileUrl}`}
+            src={`${baseURL+company.profileUrl}`}
             alt="Profile"
             className="w-10 h-10 rounded-full object-cover"
           />

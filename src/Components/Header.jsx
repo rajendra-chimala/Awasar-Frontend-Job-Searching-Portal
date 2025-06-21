@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const baseURL = "https://awasar.onrender.com"
+
 const Header = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -12,7 +14,7 @@ const Header = () => {
     const id = localStorage.getItem('userId');
     // console.log(id)
     if (id) {
-      axios.get(`http://localhost:5000/api/profile/${id}` )
+      axios.get(`${baseURL}/api/profile/${id}` )
       .then(res => {
         
         setUser(res.data);
@@ -61,7 +63,7 @@ const Header = () => {
             </Link>
             {user.profileUrl ? (
               <Link to="/profile">
-                <img src={"http://localhost:5000"+user.profileUrl} alt="profile" className="w-10 h-10 rounded-full" />
+                <img src={baseURL+user.profileUrl} alt="profile" className="w-10 h-10 rounded-full" />
               </Link>
             ) : (
               <Link to="/profile">

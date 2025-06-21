@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 
+const baseURL = "https://awasar.onrender.com"
+
 const CompanyLogin = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -14,7 +16,7 @@ const CompanyLogin = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post('http://localhost:5000/api/recruiter/login', formData);
+      const res = await axios.post(`${baseURL}/api/recruiter/login`, formData);
       const { token, id } = res.data;
 
       // Save token and company ID in localStorage

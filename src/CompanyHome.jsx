@@ -4,6 +4,8 @@ import axios from 'axios';
 import CompanyHeader from './Components/CompanyHeader';
 import { Link, useNavigate } from 'react-router-dom';
 
+const baseURL = "https://awasar.onrender.com"
+
 const CompanyHome = () => {
     const navigate = useNavigate();
   const [company, setCompany] = useState(null);
@@ -35,10 +37,10 @@ const CompanyHome = () => {
     const fetchCompany = async () => {
       const companyId = localStorage.getItem('CompanyId');
       try {
-        const res = await axios.get(`http://localhost:5000/api/recruiter/company/profile/${companyId}`);
+        const res = await axios.get(`${baseURL}/api/recruiter/company/profile/${companyId}`);
         setCompany(res.data);
 
-        const jobres = await axios.get(`http://localhost:5000/api/jobs/get-job-by-id/${companyId}`);
+        const jobres = await axios.get(`${baseURL}/api/jobs/get-job-by-id/${companyId}`);
         setJobs(jobres.data);
       } catch (err) {
         console.error('Failed to fetch company profile:', err);
@@ -57,7 +59,7 @@ const CompanyHome = () => {
     const companyId = localStorage.getItem('CompanyId');
     const token = localStorage.getItem('CompanyToken');
     try {
-      const res = await axios.post('http://localhost:5000/api/jobs/jobs', {
+      const res = await axios.post(`${baseURL}/api/jobs/jobs`, {
         ...formData,
         
       },{
@@ -111,7 +113,7 @@ const CompanyHome = () => {
         {jobs.map((job) => (
           <div key={job._id} className="bg-white p-4 rounded shadow flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <img src={`http://localhost:5000${company.profileUrl}`} alt="Company Icon" className="w-12 h-12" />
+              <img src={`${baseURL+company.profileUrl}`} alt="Company Icon" className="w-12 h-12" />
               <div>
                 <h2 className="text-lg font-semibold">{job.jobTitle}</h2>
                 <p className="text-sm text-gray-500">Created at: {new Date(job.postedAt).toLocaleDateString()}</p>

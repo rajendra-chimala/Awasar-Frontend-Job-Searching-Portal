@@ -3,6 +3,7 @@ import axios from "axios";
 
 import { Link } from "react-router-dom";
 
+const baseURL = "https://awasar.onrender.com"
 
 const RecentJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -10,7 +11,7 @@ const RecentJobs = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/jobs/jobs`);
+        const res = await axios.get(`${baseURL}/api/jobs/jobs`);
         const sortedJobs = res.data
           .sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt))
           .slice(0, 10);
@@ -39,7 +40,7 @@ const RecentJobs = () => {
               <div className="h-full border border-gray-200 flex rounded-lg overflow-hidden">
                 <div className="w-48">
                   <img
-                    src={`http://localhost:5000${job.companyProfile}`}
+                    src={`${baseURL+job.companyProfile}`}
                     alt="Company"
                     className="w-full h-48 object-cover object-center"
                   />

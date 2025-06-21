@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
+const baseURL = "https://awasar.onrender.com"
+
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState('');
@@ -20,7 +22,7 @@ const Jobs = () => {
     setSearch(query);
 
     axios
-      .get('http://localhost:5000/api/jobs/jobs/', {
+      .get(`${baseURL}/api/jobs/jobs/`, {
         params: query ? { search: query } : {}, // adds ?search= only if needed
       })
       .then((res) => {
@@ -63,7 +65,7 @@ const Jobs = () => {
            
             <li key={job._id} className="p-4 my-2 border rounded shadow-sm flex justify-between items-center hover:shadow-md transition-shadow">
              <div className='flex items-center gap-4'>
-                <img src={`http://localhost:5000${job.companyProfile}`} alt="Company Logo" className="w-16 h-16 object-cover rounded-md mb-2" />
+                <img src={`${baseURL+job.companyProfile}`} alt="Company Logo" className="w-16 h-16 object-cover rounded-md mb-2" />
                 <div>
              <h2 className="text-xl font-semibold">{job.jobTitle}</h2>
               <p className="text-gray-600">{job.companyId.companyName}</p>

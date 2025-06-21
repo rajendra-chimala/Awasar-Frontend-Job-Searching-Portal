@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
+const baseURL = "https://awasar.onrender.com";
+
 const ApplyButton = ({ jobId }) => {
   const navigate = useNavigate();
 
@@ -15,7 +17,7 @@ const ApplyButton = ({ jobId }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/applications/",
+        `${baseURL}/api/applications/`,
         { jobId },
         {
           headers: {
@@ -49,8 +51,9 @@ const JobDetailsPage = () => {
   useEffect(() => {
     const fetchJob = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/jobs/get-job-by-id/${id}`);
+        const res = await axios.get(`${baseURL}/api/jobs/job/${id}`);
         setJob(res.data);
+        console.log(res.data)
       } catch (err) {
         setError('Failed to load job details.');
       } finally {
@@ -71,7 +74,7 @@ const JobDetailsPage = () => {
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-b pb-4 mb-6">
         {job.companyProfile && (
           <img
-            src={`http://localhost:5000${job.companyProfile}`}
+            src={`${baseURL+job.companyProfile}`}
             alt="Company"
             className="w-20 h-20 object-cover rounded-md"
           />

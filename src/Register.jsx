@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+const baseURL = "https://awasar.onrender.com";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +41,7 @@ const Register = () => {
 
     try {
       setLoading(true);
-      const res = await axios.post('http://localhost:5000/api/register', data);
+      const res = await axios.post(`${baseURL}/api/register`, data);
       alert('User registered successfully!');
       console.log(res.data);
     } catch (err) {

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const baseURL = "https://awasar.onrender.com"
+
 const Login = () => {
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: '', password: '' });
@@ -14,7 +16,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       setLoading(true);
-      const res = await axios.post('http://localhost:5000/api/login', form);
+      const res = await axios.post(`${baseURL}/api/login`, form);
       const { token,id } = res.data;
 
       // Save token in localStorage

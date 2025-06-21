@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const baseURL = "https://awasar.onrender.com";
+
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [editing, setEditing] = useState(false);
@@ -13,7 +15,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:5000/api/profile/${id}`)
+      axios.get(`${baseURL}/api/profile/${id}`)
         .then(res => {
           setUser(res.data);
           setFormData({
@@ -24,7 +26,7 @@ const Profile = () => {
         })
         .catch(err => console.error('Failed to load profile:', err));
 
-      axios.get(`http://localhost:5000/api/applications/get-applications-by-job/${id}`)
+      axios.get(`${baseURL}/api/applications/get-applications-by-job/${id}`)
         .then(res => setApplications(res.data))
         .catch(err => console.error('Failed to fetch applications:', err));
     }
@@ -45,7 +47,7 @@ const Profile = () => {
     if (cvFile) data.append('cv', cvFile);
 
     try {
-      const res = await axios.put(`http://localhost:5000/api/update-profile/${id}`, data, {
+      const res = await axios.put(`${baseURL}/api/update-profile/${id}`, data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setUser(res.data.user);
@@ -68,7 +70,7 @@ const Profile = () => {
           <div className="flex items-center gap-4">
             {user.profileUrl ? (
               <img
-                src={`http://localhost:5000${user.profileUrl}`}
+                src={`${baseURL}${user.profileUrl}`}
                 alt="Profile"
                 className="w-20 h-20 rounded-full object-cover"
               />
@@ -83,7 +85,7 @@ const Profile = () => {
               <p className="text-sm text-gray-600">{user.phone}</p>
               {user.cvUrl && (
                 <a
-                  href={`http://localhost:5000${user.cvUrl}`}
+                  href={`${baseURL+user.cvUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 underline text-sm"
@@ -175,7 +177,7 @@ const Profile = () => {
                 <p>Status: <span className="capitalize">{app.status}</span></p>
                 <p>Applied At: {new Date(app.appliedAt).toLocaleDateString()}</p>
                 <a
-                  href={`http://localhost:5000${app.cvUrl}`}
+                  href={`${baseURL+app.cvUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-blue-600 underline text-sm"

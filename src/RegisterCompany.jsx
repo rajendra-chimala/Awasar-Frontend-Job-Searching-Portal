@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
+const baseURL = "https://awasar.onrender.com"
+
 const RegisterCompany = () => {
   const [formData, setFormData] = useState({
     companyName: '',
@@ -35,7 +37,7 @@ const RegisterCompany = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/company/register', data, {
+      const res = await axios.post(`${baseURL}/api/company/register`, data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Company registered successfully!');
