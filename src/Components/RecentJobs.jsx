@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
 
-const baseURL = import.meta.env.VITE_BASE_URL;
-console.log(baseURL)
+import { Link } from "react-router-dom";
+
+
 const RecentJobs = () => {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await axios.get(`${baseURL}/api/jobs/jobs`);
+        const res = await axios.get(`http://localhost:5000/api/jobs/jobs`);
         const sortedJobs = res.data
           .sort((a, b) => new Date(b.postedAt) - new Date(a.postedAt))
           .slice(0, 10);
@@ -67,7 +66,9 @@ const RecentJobs = () => {
                       </svg>
                     </span>
                     <span className="text-[#6954ff] font-bold cursor-pointer inline-flex items-center md:mb-2 lg:mb-0 ml-auto">
+                      <Link to={`/job/${job._id}`}>
                       Job Details
+                      </Link>
                       <svg
                         fill="currentColor"
                         strokeLinecap="round"
