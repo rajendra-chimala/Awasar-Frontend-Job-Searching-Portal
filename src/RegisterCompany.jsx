@@ -37,7 +37,7 @@ const RegisterCompany = () => {
     }
 
     try {
-      const res = await axios.post(`${baseURL}/api/company/register`, data, {
+      const res = await axios.post(`${baseURL}/api/recruiter/register`, data, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       alert('Company registered successfully!');
@@ -103,7 +103,7 @@ const RegisterCompany = () => {
         <div>
           <label className="block font-medium">No. of Employees</label>
           <input
-            type="number"
+            type="text"
             name="noOfEmployee"
             value={formData.noOfEmployee}
             onChange={handleChange}

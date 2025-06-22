@@ -39,6 +39,8 @@ const Header = () => {
     localStorage.removeItem('userId');
   };
   // console.log(user)
+              // console.log(baseURL+user.profileUrl);
+
 
   return (
     <header className="text-gray-600 body-font shadow-md">

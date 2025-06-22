@@ -4,11 +4,14 @@ import axios from 'axios';
 
 const baseURL = "https://awasar.onrender.com";
 
+// Reusable Apply Button
 const ApplyButton = ({ jobId }) => {
   const navigate = useNavigate();
 
   const handleApply = async () => {
     const token = localStorage.getItem("authToken");
+    
+    
 
     if (!token) {
       navigate("/login");
@@ -17,8 +20,8 @@ const ApplyButton = ({ jobId }) => {
 
     try {
       const response = await axios.post(
-        `${baseURL}/api/applications/`,
-        { jobId },
+        `https://awasar.onrender.com/api/applications`,
+        { jobId:jobId },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -53,7 +56,7 @@ const JobDetailsPage = () => {
       try {
         const res = await axios.get(`${baseURL}/api/jobs/job/${id}`);
         setJob(res.data);
-        console.log(res.data)
+        console.log(res.data);
       } catch (err) {
         setError('Failed to load job details.');
       } finally {
@@ -74,7 +77,7 @@ const JobDetailsPage = () => {
       <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-b pb-4 mb-6">
         {job.companyProfile && (
           <img
-            src={`${baseURL+job.companyProfile}`}
+            src={`${baseURL + job.companyProfile}`}
             alt="Company"
             className="w-20 h-20 object-cover rounded-md"
           />
@@ -120,6 +123,7 @@ const JobDetailsPage = () => {
         </div>
       )}
 
+      {/* Tags */}
       {job.tags?.length > 0 && (
         <div className="mb-6">
           <h2 className="text-lg font-medium mb-2">Tags</h2>
@@ -136,6 +140,7 @@ const JobDetailsPage = () => {
         </div>
       )}
 
+      {/* Apply Button */}
       <div className="mt-8">
         <ApplyButton jobId={job._id} />
       </div>
