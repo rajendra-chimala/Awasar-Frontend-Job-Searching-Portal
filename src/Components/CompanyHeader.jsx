@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const baseURL = "https://awasar.onrender.com"
 
@@ -37,7 +37,9 @@ const CompanyHeader = () => {
     <header className="bg-white shadow-md p-4">
       <div className="flex justify-between items-center">
         <div className="flex items-center gap-3">
-          <img src="/awasar.png" alt="Logo" className="h-7 rounded" />
+         <Link to="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+          <img src="/awasar.png" alt="Logo" className="h-10 p-2 rounded-full" />
+        </Link>
         </div>
         <div className="flex items-center gap-4">
           <div className="text-right">

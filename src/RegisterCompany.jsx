@@ -51,7 +51,9 @@ const RegisterCompany = () => {
   return (
     <div className='flex items-center justify-center min-h-screen'>
     <div className="max-w-xl mx-auto p-6 shadow-xl mb-2 border-t-4 border-[#6954ff] bg-white rounded-lg mt-10">
-      <img src="/awasar.png" alt="Logo" className="h-10 mx-auto mb-4 my-3" />
+      <Link to="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <img src="/awasar.png" alt="Logo" className="h-10 p-2 rounded-full" />
+              </Link>
       <h2 className="text-2xl font-bold text-center mb-4">Company Registration</h2>
       <form onSubmit={handleSubmit} className="space-y-4 lg:grid lg:grid-cols-2 gap-2" encType="multipart/form-data">
         <div>

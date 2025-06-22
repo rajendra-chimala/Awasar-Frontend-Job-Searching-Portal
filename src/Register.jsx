@@ -56,7 +56,9 @@ const Register = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 shadow-md">
        <div className='bg-white rounded-md p-4'> 
 
-      <img src="/awasar.png" alt="Logo" className="h-10 mx-auto mb-4 my-3" />
+     <Link to="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+               <img src="/awasar.png" alt="Logo" className="h-10 p-2 rounded-full" />
+             </Link>
 
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
 

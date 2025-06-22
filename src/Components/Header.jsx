@@ -51,6 +51,7 @@ const Header = () => {
           <Link to="/jobs" className="mr-5 hover:text-[#6954ff]">Jobs</Link>
           <Link to="/about" className="mr-5 hover:text-[#6954ff]">About</Link>
           <Link to="/contact" className="mr-5 hover:text-[#6954ff]">Contact</Link>
+          <Link to="/company" className="mr-5 hover:text-[#6954ff]">Company</Link>
         </nav>
 
         {user ? (

@@ -3,6 +3,8 @@ import { useParams, useSearchParams } from 'react-router-dom'; // or useParams i
 import CompanyHeader from './Components/CompanyHeader';
 import axios from 'axios';
 
+const baseURL = "https://awasar.onrender.com"
+
 const ApplicationPage = () => {
 
   const [applications, setApplications] = useState([]);
@@ -14,7 +16,7 @@ const ApplicationPage = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/applications/get-application-by-jobid/${id}`);
+        const res = await axios.get(`${baseURL}/api/applications/get-application-by-jobid/${id}`);
         setApplications(res.data);
         
       } catch (err) {
@@ -60,7 +62,7 @@ const ApplicationPage = () => {
                   <td className="border px-4 py-2">{app.applicantId.name}</td>
                   <td className="border px-4 py-2">
                     <a
-                      href={`http://localhost:5000${app.cvUrl}`}
+                      href={`${baseURL+app.cvUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 underline"
