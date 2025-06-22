@@ -34,7 +34,7 @@ const Testimonials = () => {
       <div className="max-w-6xl mx-auto px-4 text-center">
         <h2 className="text-3xl font-bold text-gray-800 mb-2">Testimonials from Our Customers</h2>
         <p className="text-gray-600 mb-10 max-w-xl mx-auto">
-          At eu lobortis pretium tincidunt amet lacus ut aenean aliquet. Blandit a massa elementum id...
+          Our clients share their experiences and how our services made a difference.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, index) => (
