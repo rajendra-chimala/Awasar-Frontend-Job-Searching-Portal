@@ -12,6 +12,7 @@ import RegisterCompany from "./RegisterCompany";
 import CompanyLogin from "./CompanyLogin";
 import CompanyHome from "./CompanyHome";
 import ApplicationPage from "./ApplicationPage";
+import About from "./About";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login-company" element={<CompanyLogin/>}/>
           <Route path="/company" element={<CompanyHome/>}/>
           <Route path="/applicatnts/:id" element={<ApplicationPage/>} />
+          <Route path="/about" element={<About/>}/>
         </Routes>
       </BrowserRouter>
     </>
